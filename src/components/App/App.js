@@ -1,10 +1,8 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid';
 import { Searchbar } from '../Searchbar/Searchbar';
 import { ImageGallery } from '../ImageGallery/ImageGallery';
 import { Button } from '../Button/Button';
-import { Modal } from '../Modal/Modal';
-import css from '../Modal/Modal.module.css';
+
 
 // 23818596-d5461ac6688865132aed17576;
 
