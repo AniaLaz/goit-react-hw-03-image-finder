@@ -1,8 +1,19 @@
 import { Component } from 'react';
 import css from '../Modal/Modal.module.css';
 import { createPortal } from 'react-dom';
+import * as basicLightbox from 'basiclightbox';
 
 const modalRoot = document.getElementById('modal-root');
+
+// const instance = basicLightbox.create(`
+//     <div class="modal">
+//         <p>
+//             Your first lightbox with just a few lines of code.
+//             Yes, it's really that simple.
+//         </p>
+//     </div>
+// `);
+
 
 export class Modal extends Component {
   componentDidMount() {
@@ -19,17 +30,24 @@ export class Modal extends Component {
       console.log('e', e.code);
       this.props.onClose();
     }
-  };
+    };
+    
+    handlBackdrop = e => {
+        if (e.currentTarget === e.target)
+           {this.props.onClose();}
+    }
 
   render() {
     return createPortal(
-      <div className={css.backdrop}>
-        <div className={css.modal}>
-          {this.props.children}
-          модалка
-        </div>
-      </div>,
-      modalRoot
+           <div className={css.backdrop} onClick={this.handlBackdrop}>
+          <div className={css.modal}>
+            {this.props.children}
+            модалка
+          </div>
+        </div>,
+        modalRoot
     );
   }
 }
+
+
