@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Searchbar } from '../Searchbar/Searchbar';
 import { ImageGallery } from '../ImageGallery/ImageGallery';
 import { Button } from '../Button/Button';
+import autoscroll from '../Utils/Autosckroll'
 
 
 // 23818596-d5461ac6688865132aed17576;
@@ -31,14 +32,13 @@ export class App extends Component {
       if (prevName !== nextName || prevState.page !== this.state.page) {
         this.setState({ inLoading: true });
         await fetch(
-          `https://pixaba.com/api/?q=${nextName}&page=${this.state.page}&key=23818596-d5461ac6688865132aed17576&image_type=photo&orientation=horizontal&per_page=12`
+          `https://pixabay.com/api/?q=${nextName}&page=${this.state.page}&key=23818596-d5461ac6688865132aed17576&image_type=photo&orientation=horizontal&per_page=12`
         )
           .then(res => res.json())
           .then(picturs => {
             if (this.state.page === 1) {
-              this.setState({ picturs: picturs.hits });
-              this.setState({ inLoading: false });
-            } else {
+              this.setState({ picturs: picturs.hits, inLoading: false });
+                } else {
               this.setState(data => ({
                 picturs: [...prevState.picturs, ...picturs.hits],
                 inLoading: false ,
@@ -50,6 +50,7 @@ export class App extends Component {
       console.log(error);
       this.setState({ error: 'что то пошло не так!', inLoading: false }); 
     } 
+   autoscroll(); 
   }
 
   onChang = query => {
@@ -75,6 +76,7 @@ export class App extends Component {
         {this.state.error && <p style={{ color: 'red' }}>{this.state.error}</p>}
         {this.state.picturs && (
           <ImageGallery
+
             pictureArr={this.state.picturs}
             shouModal={this.state.showModal}
           />
