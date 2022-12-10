@@ -2,6 +2,7 @@ import css from '../ImageGalleryItem/ImageGalleryItem.module.css';
 import { Component } from 'react';
 import { Modal } from '../Modal/Modal';
 import cssModal from '../Modal/Modal.module.css';
+import { AiOutlineClose } from 'react-icons/ai';
 
 export class ImageGalleryItem extends Component {
   state = {
@@ -43,7 +44,7 @@ export class ImageGalleryItem extends Component {
               className={cssModal.modal__button}
               onClick={this.oupenModal}
             >
-              X
+              <AiOutlineClose />
             </button>
           </Modal>
         )}
