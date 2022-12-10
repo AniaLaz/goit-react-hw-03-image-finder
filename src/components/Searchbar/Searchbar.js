@@ -17,7 +17,8 @@ export class Searchbar extends Component {
       return;
     }
     this.props.onSubmit(this.state.pictureName);
-    this.setState({pictureName: ''});
+    this.setState({ pictureName: '' });
+    this.props.getQuary(this.state.pictureName);
   };
 
   render() {

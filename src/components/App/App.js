@@ -11,60 +11,53 @@ import { Button } from '../Button/Button';
 export class App extends Component {
   state = {
     picturs: [],
-    pictureName: '',
+    query: '',
     page: 1,
-    // inLoading: false,
+    inLoading: false,
     error: null,
   };
 
+  getQuary = queryFromBar => {
+    this.setState({
+      query: queryFromBar,
+    });
+  };
+
   async componentDidUpdate(_, prevState) {
-    console.log('PrevState.pictureName', prevState.pictureName);
-    console.log('this.state.pictureName', this.state.pictureName);
-    const prevName = prevState.pictureName;
-    const nextName = this.state.pictureName;
+    const prevName = prevState.query;
+    const nextName = this.state.query;
 
     try {
       if (prevName !== nextName || prevState.page !== this.state.page) {
-        console.log('різні');
-        // this.setState({ inLoading: true });
-
+        this.setState({ inLoading: true });
         await fetch(
-          `https://pixabay.com/api/?q=${nextName}&page=${this.state.page}&key=23818596-d5461ac6688865132aed17576&image_type=photo&orientation=horizontal&per_page=12`
+          `https://pixaba.com/api/?q=${nextName}&page=${this.state.page}&key=23818596-d5461ac6688865132aed17576&image_type=photo&orientation=horizontal&per_page=12`
         )
           .then(res => res.json())
           .then(picturs => {
-            console.log('picturt', picturs);
-
             if (this.state.page === 1) {
-              console.log('11111111111111111111');
               this.setState({ picturs: picturs.hits });
+              this.setState({ inLoading: false });
             } else {
               this.setState(data => ({
                 picturs: [...prevState.picturs, ...picturs.hits],
+                inLoading: false ,
               }));
             }
-
-            console.log('picturt 2', picturs.hits);
-            console.log('page', this.state.page);
-            console.log('PrevState.picturt 1', prevState.picturs);
           });
       }
     } catch (error) {
       console.log(error);
-
-      this.setState({ error: 'что то пошло не так!' });
-    } finally {
-      // this.setState({ inLoading: false });
-    }
+      this.setState({ error: 'что то пошло не так!', inLoading: false }); 
+    } 
   }
 
-  onChang = pictureName => {
+  onChang = query => {
     this.setState({
       page: 1,
-      pictureName: '',
+      query: '',
     });
-    console.log('pictureName_onChang ', pictureName);
-    this.setState({ pictureName });
+    this.setState({ query });
   };
 
   loadMore = () => {
@@ -76,11 +69,9 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <Searchbar onSubmit={this.onChang} />
+        <Searchbar onSubmit={this.onChang} getQuary={this.getQuary} />
 
-        {/* {this.state.inLoading && (
-          <p>завантажується...</p>
-        )} */}
+        {this.state.inLoading && <p>завантажується...</p>}
         {this.state.error && <p style={{ color: 'red' }}>{this.state.error}</p>}
         {this.state.picturs && (
           <ImageGallery
