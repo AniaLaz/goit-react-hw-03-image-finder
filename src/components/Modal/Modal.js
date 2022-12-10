@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import css from '../Modal/Modal.module.css';
 import { createPortal } from 'react-dom';
-import * as basicLightbox from 'basiclightbox';
+
 
 const modalRoot = document.getElementById('modal-root');
 
