@@ -4,9 +4,14 @@ import { Modal } from '../Modal/Modal';
 import cssModal from '../Modal/Modal.module.css';
 
 export class ImageGalleryItem extends Component {
-  // state = {
-  //   urlBig: '',
-  // };
+  state = {
+    urlBig: '',
+    showModal: false,
+  };
+
+  oupenModal = () => {
+    this.setState(state => ({ showModal: !state.showModal }));
+  };
 
   // onClickUrlBig = () => {
   //   this.setState({ urlBig: this.props.largeImageURL });
@@ -17,7 +22,7 @@ export class ImageGalleryItem extends Component {
   render() {
     return (
       <>
-        <li className={css.imageGalleryItem} onClick={this.props.oupenModal}>
+        <li className={css.imageGalleryItem} onClick={this.oupenModal}>
           <img
             className={css.imageGalleryItemImage}
             src={this.props.webformatURL}
@@ -25,13 +30,10 @@ export class ImageGalleryItem extends Component {
             url={this.props.largeImageURL}
           />
         </li>
-        {this.props.shouModal && (
-          <Modal
-            onClose={this.props.oupenModal}
-            shouModal={this.props.shouModal}
-          >
+        {this.state.showModal && (
+          <Modal onClose={this.oupenModal} shouModal={this.props.shouModal}>
             <img
-              className={css.imageGalleryItemImage}
+              className={cssModal.modalImg}
               src={this.props.largeImageURL}
               // src={this.state.urlBig}
               alt={this.props.tags}
@@ -39,7 +41,7 @@ export class ImageGalleryItem extends Component {
             <button
               type="button"
               className={cssModal.modal__button}
-              onClick={this.props.oupenModal}
+              onClick={this.oupenModal}
             >
               X
             </button>

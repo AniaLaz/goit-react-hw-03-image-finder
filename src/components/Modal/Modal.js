@@ -42,8 +42,7 @@ export class Modal extends Component {
            <div className={css.backdrop} onClick={this.handlBackdrop}>
           <div className={css.modal}>
             {this.props.children}
-            модалка
-          </div>
+                 </div>
         </div>,
         modalRoot
     );

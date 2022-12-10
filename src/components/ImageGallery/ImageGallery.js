@@ -8,13 +8,11 @@ export const ImageGallery = ({ pictureArr, oupenModal, shouModal }) => {
         <ImageGalleryItem
           key={picture.id}
           pictureArr={pictureArr}
-          oupenModal={oupenModal}
           shouModal={shouModal}
      
           webformatURL={picture.webformatURL}
           tags={picture.tags}
           largeImageURL={picture.largeImageURL}
-          
         />
       ))}
     </ul>

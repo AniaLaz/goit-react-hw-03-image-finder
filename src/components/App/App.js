@@ -15,7 +15,6 @@ export class App extends Component {
     picturs: [],
     pictureName: '',
     page: 1,
-    showModal: false,
     // inLoading: false,
     error: null,
   };
@@ -25,7 +24,7 @@ export class App extends Component {
     console.log('this.state.pictureName', this.state.pictureName);
     const prevName = prevState.pictureName;
     const nextName = this.state.pictureName;
-    // this.setState({ inLoading: true });
+
     try {
       if (prevName !== nextName || prevState.page !== this.state.page) {
         console.log('різні');
@@ -76,15 +75,6 @@ export class App extends Component {
     }));
   };
 
-  togglModal = () => {
-    this.setState(state => ({ showModal: !state.showModal }));
-  };
-
-  // gatBigImg = e => {
-  //   console.log(e);
-  //   this.setState(state => ({ showModal: !state.showModal }));
-  // };
-
   render() {
     return (
       <div>
@@ -97,7 +87,6 @@ export class App extends Component {
         {this.state.picturs && (
           <ImageGallery
             pictureArr={this.state.picturs}
-            oupenModal={this.togglModal}
             shouModal={this.state.showModal}
           />
         )}
@@ -107,33 +96,31 @@ export class App extends Component {
   }
 }
 
-
-
-    // {
-    //   /* {this.state.showModal && (
-    //       <Modal onClose={this.togglModal}>
-    //         <div>hsksr;</div>
-    //         <button
-    //           type="button"
-    //           className={css.modal__button}
-    //           onClick={this.togglModal}
-    //         >
-    //           X
-    //         </button>
-    //       </Modal>
-    //     )} */
-    // }
-    // {
-    //   /* {this.state.error && <p>Щось пішло не такБ спробуйте ще раз</p>} */
-    // }
-    // {
-    //   /* {this.state.inLoading & this.state.picturt ? (
-    //       <p>завантажуэться...</p>
-    //     ) : (
-    //       <ImageGallery
-    //         pictureArr={this.state.picturt}
-    //         oupenModal={this.gatBigImg}
-    //         shouModal={this.state.showModal}
-    //       />
-    //     )} */
-    // }
+// {
+//   /* {this.state.showModal && (
+//       <Modal onClose={this.togglModal}>
+//         <div>hsksr;</div>
+//         <button
+//           type="button"
+//           className={css.modal__button}
+//           onClick={this.togglModal}
+//         >
+//           X
+//         </button>
+//       </Modal>
+//     )} */
+// }
+// {
+//   /* {this.state.error && <p>Щось пішло не такБ спробуйте ще раз</p>} */
+// }
+// {
+//   /* {this.state.inLoading & this.state.picturt ? (
+//       <p>завантажуэться...</p>
+//     ) : (
+//       <ImageGallery
+//         pictureArr={this.state.picturt}
+//         oupenModal={this.gatBigImg}
+//         shouModal={this.state.showModal}
+//       />
+//     )} */
+// }

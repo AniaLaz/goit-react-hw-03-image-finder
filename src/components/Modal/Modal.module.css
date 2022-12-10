@@ -13,13 +13,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  
+  /* background-color: aliceblue; */
 
-  min-height: 300px;
-  min-width: 200px;
-  max-height: 95vh;}
+  /* min-height: 300px;
+  min-width: 200px; */
+  max-height: 70vh;
+   max-width: 70vh;
 
-  .modal__button {
+}
+
+.modal__button {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -29,4 +32,11 @@
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: 50%;
+  background-color: aliceblue;
+}
+
+
+.modalImg {
+  width: 100%;
+ 
 }
